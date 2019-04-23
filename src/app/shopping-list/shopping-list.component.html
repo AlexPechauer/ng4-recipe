@@ -1,9 +1,16 @@
 <div class="row">
   <div class="col-xs-10">
-    <app-shopping-edit></app-shopping-edit>
+    <!-- this is listen for the event sent up from the child and excepts the event data as $event. -->
+    <app-shopping-edit
+    (ingredientAdded)="onIngredientAdded($event)"></app-shopping-edit>
     <hr>
     <ul class="list-group">
-      <a class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of ingredients" >
+      <!-- A structural directive that iterates over ingredients list and displays
+      each object's name and amount -->
+      <a class="list-group-item" style="cursor: pointer"      
+      *ngFor="let ingredient of ingredients" 
+      [ngStyle] = "{backgroundColor: amount % 2 !== 0 ? 'yellow' : 'transparent'}"
+      >
       {{ ingredient.name }} {{ ingredient.amount }}
       </a>
     </ul>
